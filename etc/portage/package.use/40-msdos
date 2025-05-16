@@ -1,0 +1,9 @@
+app-emulation/wine* -gecko -realtime -run-exes
+
+app-admin/testdisk ntfs
+sys-apps/gnome-disk-utility fat
+
+# unar
+sys-devel/gcc objc
+gnustep-base/gnustep-base libffi
+gnustep-base/gnustep-make native-exceptions

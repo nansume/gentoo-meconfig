@@ -1,0 +1,3 @@
+ACTION=="add|remove" SUBSYSTEMS=="usb", KERNEL=="sd[b-z]"      RUN+="/sbin/mount_usb --auto --write %k"
+ACTION=="add|remove" SUBSYSTEMS=="usb", KERNEL=="sd[b-z]1"     RUN+="/sbin/mount_usb --auto --fstype=ntfs3g --write %k"
+#ACTION=="add|remove" SUBSYSTEMS=="usb", KERNEL=="sd[b-z][3-5]" RUN+="/sbin/mount_usb --auto --write %k"

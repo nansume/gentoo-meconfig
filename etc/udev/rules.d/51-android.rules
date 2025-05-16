@@ -1,0 +1,9 @@
+# https4://github.com/snowdream/51-android/raw/master/51-android.rules
+
+# {idVendor}:{idProduct}
+
+# 1782:4012
+SUBSYSTEM=="usb" ATTR{idVendor}=="1782" GROUP="plugdev" MODE="0660"
+
+# 0e8d:2000
+SUBSYSTEM=="usb" ATTR{idVendor}=="0e8d" GROUP="plugdev" MODE="0660"

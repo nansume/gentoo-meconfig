@@ -1,0 +1,13 @@
+#!/lib/shell/env bash5
+# Copyright (C) 2019 Artem Slepnev, Shellgen
+# License GPLv3+: GNU GPL version 3 or later
+# gnu.org/licenses/gpl.html
+
+
+ABI=amd64
+DEFAULT_ABI=$ABI
+BITS=64
+ABI_X86=64
+CFLAGS="$CFLAGS -m64"
+CXXFLAGS=$CFLAGS
+LDFLAGS="$LDFLAGS -m64"

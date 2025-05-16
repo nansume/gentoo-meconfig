@@ -1,0 +1,64 @@
+#!/lib/shell/env bash
+ACCEPT_LICENSE="${ACCEPT_LICENSE} 9wm AGPL3"
+# These settings were set by the catalyst build script that automatically
+# built this stage.
+# Please consult /usr/share/portage/config/make.conf.example for a more
+# detailed example.
+COMMON_FLAGS="-O2 -g0"
+# -pipe
+CFLAGS="${COMMON_FLAGS}"
+CXXFLAGS="${COMMON_FLAGS}"
+FCFLAGS="${COMMON_FLAGS}"
+FFLAGS="${COMMON_FLAGS}"
+ACCEPT_KEYWORDS="~amd64"
+
+CPU_FLAGS_X86="${CPU_FLAGS_X86} aes"
+# NOTE: This stage was built with the bindist Use flag enabled
+USE="
+alsa apng bmp bittorrent drm directfb -dist-kernel fat fbcon freetype
+firmware fuse fusefs ftp gbm gopher gles2-only gtk3 natspec nntp midi
+minizip imlib kdrive kms mbedtls
+libcaca -libkms lua vdpau otr pcre32 pdfimport savedconfig service sftp
+system-icu system-sqlite symlink ssh xft webp webui tftp timidity zstd
+-css -debug -idn glamor
+"
+
+VIDEO_CARDS="fbdev nouveau radeon radeonsi intel"
+ALSA_CARDS=""
+
+PORTDIR="/var/db/repos/gentoo"
+DISTDIR="/var/cache/distfiles"
+PKGDIR="/var/cache/binpkgs"
+
+L10N="ru ru-RU"
+#LINGUAS="ru ru_RU"
+LCD_DEVICES=""
+
+# This sets the language of build output to English.
+# Please keep this setting intact when reporting bugs.
+LC_MESSAGES="C"
+
+RUBY_TARGETS="${RUBY_TARGETS} ruby30"
+# `AMDGPU BPF NVPTX (X86)`
+#LLVM_TARGETS="BPF X86"
+#GPSD_PROTOCOLS=""
+FFTOOLS=""
+XTABLES_ADDONS=""
+
+FEATURES="\
+notitles skiprocheck
+-binpkg-logs -ebuild-locks -news -unmerge-logs
+-ipc-sandbox -network-sandbox -pid-sandbox"
+
+PORTAGE_NICENESS="19"
+PORTAGE_IONICE_COMMAND="ionice -c 3 -p \${PID}"
+MAKEOPTS="--jobs=4 --load-average=4 -s"
+
+GENTOO_MIRRORS="
+ https://mirror.leaseweb.com/gentoo
+ https://mirror.mdfnet.se/gentoo
+ https://trumpetti.atm.tut.fi/gentoo
+"
+
+I_KNOW_WHAT_I_AM_DOING="1"
+EMERGE_DEFAULT_OPTS="--jobs=4 --load-average=3 --nospinner --keep-going"

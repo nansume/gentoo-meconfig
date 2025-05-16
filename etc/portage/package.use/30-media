@@ -1,0 +1,9 @@
+media-*/audacious* -qt5
+media-plugins/gst-plugins-vaapi -opengl
+media-video/mplayer -cpu_flags_x86_mmx -cpu_flags_x86_mmxext -cpu_flags_x86_sse2
+media-video/mpv -lcms
+x11-libs/libva* -video_cards_nouveau -opengl -egl
+
+#dev-qt/* gstreamer
+media-video/mplayer vidix
+media-video/mpv drm

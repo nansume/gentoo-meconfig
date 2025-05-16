@@ -1,0 +1,5 @@
+PATH="/usr/i686-pc-linux-gnu/gcc-bin/7.3.0"
+ROOTPATH="/usr/i686-pc-linux-gnu/gcc-bin/7.3.0"
+GCC_SPECS=""
+MANPATH="/usr/share/gcc-data/i686-pc-linux-gnu/7.3.0/man"
+INFOPATH="/usr/share/gcc-data/i686-pc-linux-gnu/7.3.0/info"

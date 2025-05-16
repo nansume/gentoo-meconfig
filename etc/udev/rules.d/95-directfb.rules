@@ -1,0 +1,5 @@
+# http://rhlug.pileus.org/wiki/DirectFB
+
+#KERNEL=="tty0" GROUP="tty" MODE="0660"
+SUBSYSTEM=="tty" KERNEL=="tty0" MODE="0660"
+#SUBSYSTEMS=="input" KERNEL=="event*" GROUP="input" MODE="0660"

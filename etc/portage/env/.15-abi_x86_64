@@ -1,0 +1,71 @@
+#!/lib/shell/env bash5
+# Copyright (C) 2019 Artem Slepnev, Shellgen
+# License GPLv3+: GNU GPL version 3 or later
+# gnu.org/licenses/gpl.html
+
+
+
+if [[ ${EBUILD_PHASE-} == setup ]]; then
+   if [[ $MULTILIB_ABIS == amd64*x32 ]]; then
+      abi_x86_64() {
+         declare -grx DEFAULT_ABI=${MULTILIB_ABIS%% *}
+         declare -grx ABI=$DEFAULT_ABI
+         declare -grx ABI_X86=64
+         declare -grx BITS=$ABI_X86
+         declare -grx MULTILIB_ABIS=$DEFAULT_ABI
+         declare -grx CFLAGS_default=${CFLAGS_amd64}
+         declare -grx CFLAGS+=\ ${CFLAGS_default}
+         declare -grx CXXFLAGS+=\ ${CFLAGS_default}
+         declare -grx LDFLAGS_default=${LDFLAGS_amd64}
+         declare -grx LDFLAGS+=\ ${CFLAGS_default}
+         declare -grx CHOST_default=${CHOST_amd64}
+         declare -grx CHOST=$CHOST_default
+         declare -grx CBUILD=$CHOST
+         declare -grx CTARGET_default=$CBUILD
+         declare -grx CTARGET=${CTARGET_default}
+         declare -grx LIBDIR_default=${LIBDIR_amd64}
+         declare -grx LD_LIBRARY_PATH=/usr/${LIBDIR_default}
+      }
+
+
+      _AbisList() {
+         unset -f $FUNCNAME
+
+         ENV_NAME=${1:-$ENV_NAME}
+         declare -r FILE=/$OVERLAY_DIR/profiles/lst.d/$ENV_NAME
+
+         if [[ -r $FILE ]]; then
+            IFS=$'\n' mapfile -tn 50 -d $'\n' ABIS_LIST < $FILE
+         fi
+      }
+
+
+
+      if declare -F before_pkg_$EBUILD_PHASE &> /dev/null; then
+         # error - color: red
+         printf " \e[;31m++\e[m \e[1;37mbefore_pkg_$EBUILD_PHASE\e[m... \e[1;31merror\e[m\n"
+         return 1
+      else
+         before_pkg_setup() {
+            unset -f $FUNCNAME
+            declare \
+            ENV_NAME=12-abi_x86_64
+            #ENV_NAME=${BASH_SOURCE##*/}
+            ENV_NAME=${ENV_NAME%.*}
+
+            _AbisList $ENV_NAME || return
+            for PACKAGE in ${ABIS_LIST[*]}; {
+               case $PACKAGE in
+                  $CATEGORY/$PN:$SLOT)
+                     ${ENV_NAME#*-} || return
+                     # color: green
+                     printf " \e[1;3m+\e[m $BASH_SOURCE\n"
+                  ;;
+               esac
+            }
+            unset -f ${ENV_NAME#*-}
+            unset -v ENV_NAME ABIS_LIST PACKAGE
+         }
+      fi
+   fi
+fi

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash4
+# Copyright (C) 2018 Artem Slepnev, Shellgen
+# License GPLv3+: GNU GPL version 3 or later
+# gnu.org/licenses/gpl.html
+
+
+
+# -Wno-format-truncation
+CFLAGS="${CFLAGS} -Wno-unused-but-set-variable -Wno-pointer-sign -Wno-parentheses"
+CFLAGS="${CFLAGS} -Wno-deprecated-declarations -Wno-discarded-qualifiers "
+CFLAGS="${CFLAGS} -Wno-incompatible-pointer-types -Wno-int-conversion -Wno-return-type"
+CFLAGS="${CFLAGS} -Wno-unused-variable -Wno-array-bounds -Wno-switch -Wno-enum-compare"
+CFLAGS="${CFLAGS} -Wno-overflow -Wno-unused-function -Wno-maybe-uninitialized -Wno-unused-value"
+CFLAGS="${CFLAGS} -Wno-pointer-compare -Wno-bool-compare -Wno-logical-not-parentheses"
+CFLAGS="${CFLAGS} -Wno-implicit-function-declaration -Wno-duplicate-decl-specifier -Wno-unused-result"
+CXXFLAGS="${CFLAGS}"
+
+epatch_user() {
+   epatch "${EPATCH_USER_SOURCE}/x11-libs/${PN}/gtk+-${PV}-libpng16.diff"
+   epatch "${EPATCH_USER_SOURCE}/x11-libs/${PN}/gtk+-${PV}-G_CONST_RETURN.diff"
+   epatch "${EPATCH_USER_SOURCE}/x11-libs/${PN}/gtk+-${PV}-demos_fix.diff"
+}

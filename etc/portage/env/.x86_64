@@ -1,0 +1,10 @@
+#!/lib/shell/env bash5
+# Copyright (C) 2019 Artem Slepnev, Shellgen
+# License GPLv3+: GNU GPL version 3 or later
+# gnu.org/licenses/gpl.html
+
+
+ABI=amd64
+CBUILD=x86_64-pc-linux-gnu
+CHOST=$CBUILD
+CTARGET=$CBUILD

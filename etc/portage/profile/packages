@@ -1,0 +1,9 @@
+*dev-util/ccache
+*dev-util/cmake
+*net-misc/openssh
+*sys-boot/grub
+*sys-firmware/nvidia-firmware
+*sys-fs/eudev
+*sys-libs/gpm
+*sys-kernel/linux-firmware
+*sys-kernel/vanilla-sources

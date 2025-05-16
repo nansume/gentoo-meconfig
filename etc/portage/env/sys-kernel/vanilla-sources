@@ -1,0 +1,44 @@
+#!/usr/bin/env bash4
+# Copyright (C) 2018 Artem Slepnev, Shellgen
+# License GPLv3+: GNU GPL version 3 or later
+# gnu.org/licenses/gpl.html
+
+
+
+INSTALL_MASK="\
+/usr/src/linux-*/Documentation
+/usr/src/linux-*/arch/arm64
+/usr/src/linux-*/arch/riscv
+/usr/src/linux-*/arch/openrisc
+/usr/src/linux-*/arch/sparc
+/usr/src/linux-*/arch/hexagon
+/usr/src/linux-*/arch/arc
+/usr/src/linux-*/arch/s390
+/usr/src/linux-*/arch/h8300
+/usr/src/linux-*/arch/c6x
+/usr/src/linux-*/arch/powerpc
+/usr/src/linux-*/arch/arm
+/usr/src/linux-*/arch/xtensa
+/usr/src/linux-*/arch/ia64
+/usr/src/linux-*/arch/mips
+/usr/src/linux-*/arch/um
+/usr/src/linux-*/arch/nios2
+/usr/src/linux-*/arch/microblaze
+/usr/src/linux-*/arch/unicore32
+/usr/src/linux-*/arch/nds32
+/usr/src/linux-*/arch/alpha
+/usr/src/linux-*/arch/m68k
+/usr/src/linux-*/arch/parisc
+/usr/src/linux-*/arch/sh"
+
+post_src_install() {
+   # Expert Mode depend Kernel debugging remove
+   # "menuconfig EXPERT" - search string
+   # "select DEBUG_KERNEL" - rm string
+	sed -i '/^\tselect\ DEBUG_KERNEL$/d' init/Kconfig
+
+	sed -i '/^\tselect\ CRYPTO_LZO$/d' drivers/block/zram/Kconfig
+	sed -i '/^\tselect CPU_FREQ_GOV_PERFORMANCE$/d' drivers/cpufreq/Kconfig
+	#sed -i "/HOSTCFLAGS/ s/-O2/-O3 -msse3/" Makefile
+	#sed -i "/HOSTCXXFLAGS/ s/-O2/-O3 -msse3/" Makefile
+}

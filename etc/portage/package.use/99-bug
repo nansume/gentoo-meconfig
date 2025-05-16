@@ -1,0 +1,34 @@
+*/* -opengl -llvm -udev -upower -caps -filecaps -pam -ssh-agent -gif
+*/* -dynload -mng -gpg -curl -gdbm -berkdb -crypt -branding
+*/* -cups -jpeg2k -netifrc -dynload -arping -fonts -themes -suid -uuid
+*/* -pie -cracklib -xattr -hwdb -kmod -seccomp -jit -manpager -blake2
+*/* -mime -rsync-verify -webdav -egl -xv -glamor -introspection
+*/* -encode -osdmenu -pcre-jit -cairo -glib -graphite -tiff -webp
+*/* -perl -aio -bzip2 -fdt -pin-upstream-blobs -vhost-net -vnc
+*/* -enca -classic -dri3 -gallium -gbm -nse -font-styles -mousewheel
+*/* -gmp -libsamplerate -gnutls -libxml2 -nettle -postproc
+*/* -tcpd -edit -blksha1 -thread-safety -mclib -pcre -openssl
+*/* -magic -ncurses -nls -spell -jpeg -png -ssl -X -zlib -ipv6
+*/* -mad -vorbis -python
+
+app-*/* -jpeg -png -ssl
+dev-libs/* -zlib
+dev-vcs/* -ssl
+net-*/* -X -ssl -zlib
+mail-*/* -ssl
+media-*/* -zlib
+x11-*/* -ipv6
+
+dev-libs/DirectFB -alsa -jpeg -mad -png -truetype -vorbis
+media-video/mpv -X
+
+
+#media-libs/* X
+sys-apps/* pcre
+#x11-libs/* X
+
+app-emulation/qemu sdl
+dev-libs/nettle gmp
+net-misc/curl ssl
+net-misc/wget ssl
+media-video/mplayer X

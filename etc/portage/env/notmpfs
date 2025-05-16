@@ -1,0 +1,10 @@
+#!/usr/bin/env bash4
+# Copyright (C) 2018 Artem Slepnev, Shellgen
+# License GPLv3+: GNU GPL version 3 or later
+# gnu.org/licenses/gpl.html
+
+MAKEOPTS="-j1"
+FEATURES="${FEATURES} ccache noclean"
+CCACHE_DIR="${PORTAGE_TMPDIR}/ccache"
+CCACHE_SIZE="1.2G"
+PORTAGE_TMPDIR='/var/tmp_disk'

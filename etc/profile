@@ -1,0 +1,76 @@
+#!/usr/bin/env bash4
+# Copyright (C) 2018 Artem Slepnev, Shellgen
+# License GPLv3+: GNU GPL version 3 or later
+# gnu.org/licenses/gpl.html
+
+
+
+#set -o nounset
+#set -o pipefail
+
+#set +o histexpand
+
+# unset shell opts
+#shopt -u cmdhist complete_fullquote extquote \
+# extquote force_fignore hostcomplete progcomp \
+#  promptvars sourcepath
+
+unset _InputItem _ItemAlnum _RcExec _RemountDisk _TestFuncInt _TzDate ABI BOOT_IMAGE
+
+
+(( ${#PATH} == 60 )) && PATH=${PATH:31}
+
+
+if [[ -s /tmp/evar/ttyn ]]; then
+   read -n 1 TTY < /tmp/evar/ttyn
+   printf ''> /tmp/evar/ttyn
+fi
+
+declare -r USER=${USER:-${HOME#/}}
+declare -r TTY=${TTY:-1}
+declare -r BASH SHELL LOGNAME HOME PS4
+declare -r OSTYPE HOSTTYPE MACHTYPE TERM
+declare -r HOSTNAME=${HOSTNAME:-gentoo}
+
+umask 022
+
+
+# non-interactive shell
+if ! [[ ${PS1:-} ]]; then
+   set -o emacs
+
+   # set shell opts
+   #shopt -s nullglob
+   # unset shell opts
+   #shopt -u interactive_comments
+
+else  # interactive login shell
+   shopt -s histverify
+   set +o hashall
+
+   declare -r EDITOR=${EDITOR:-nano}
+
+   use_color=true
+   history_control=ignorespace
+
+   alias ls='ls --color=auto'
+   alias grep='grep --colour=auto'
+
+   if ! (( $PPID == 0 )); then
+      set +o monitor
+      alias mc='mc --nosubshell 2> /dev/null'
+   #else
+   #   set -o monitor
+   fi
+
+   PS1='\[\033[00;35m\]\u\[\033[00;34m\]\$\[\033[00m\] '
+   ps1=$PS1
+
+   export EDITOR
+fi
+
+
+export TTY
+
+
+unset MAILCHECK

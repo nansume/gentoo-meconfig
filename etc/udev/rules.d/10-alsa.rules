@@ -1,0 +1,29 @@
+# https://alsa.opensrc.org/Udev
+
+
+#SUBSYSTEMS=="sound" KERNEL=="controlC[0-2]" GROUP="audio" MODE="0660"
+#KERNEL=="pcmC*D[0-3][cp]" GROUP="audio" MODE="0660"
+#DRIVERS=="HDA Intel" KERNEL=="pcmC0D3p" NAME="snd/pcmC0D0p"
+#DRIVERS=="HDA Intel" KERNEL=="controlC1" NAME="snd/controlC0"
+#SUBSYSTEMS=="sound" ATTRS{id}=="Generic" ATTRS{number}=="1" KERNEL=="controlC1" SYMLINK+="snd/controlC/0"
+#DRIVERS=="HDA Intel" KERNEL=="pcmC*D0c" NAME="snd/pcmC0D0c"
+#DRIVERS=="HDA Intel" KERNEL=="pcmC1D0c" NAME="snd/pcmC0D0c"
+#DRIVERS=="HDA Intel" KERNEL=="pcmC1D2c" NAME="snd/pcmC0D2c"
+#DRIVERS=="snd_hda_intel" KERNEL=="pcmC1D0p" NAME="snd/pcmC0D0p"
+
+#SUBSYSTEMS=="sound" ATTRS{id}=="Generic" ATTRS{number}=="1" KERNEL=="controlC1" \
+# RUN+="/bin/bash  -c 'printf defaults.ctl.card\ %n\\ndefaults.pcm.card\ %n > /home/livecd/.asoundrc'"
+
+SUBSYSTEMS=="sound" ATTRS{id}=="Generic" ATTRS{number}=="1" KERNEL=="controlC1" \
+ RUN+="/bin/bash -c '[[ -e /dev/snd/controlC1 ]] && mv -f /dev/snd/controlC1 /dev/snd/controlC0'"
+
+SUBSYSTEMS=="sound" ATTRS{id}=="Generic" ATTRS{number}=="1" KERNEL=="pcmC1D0p" \
+ RUN+="/bin/bash -c '[[ -e /dev/snd/pcmC1D0p ]] && mv -f /dev/snd/pcmC1D0p /dev/snd/pcmC0D0p'"
+
+SUBSYSTEMS=="sound" ATTRS{id}=="Generic" ATTRS{number}=="1" KERNEL=="pcmC*D0c" \
+ RUN+="/bin/bash -c 'rm /dev/snd/pcmC*D*c'"
+
+#SUBSYSTEMS=="sound" ATTRS{id}=="Generic" ATTRS{number}=="1" KERNEL=="controlC1" SYMLINK+="snd/controlC0"
+#SUBSYSTEMS=="sound" ATTRS{id}=="Generic" ATTRS{number}=="1" KERNEL=="pcmC1D0c"  SYMLINK+="snd/pcmC0D0c"
+#SUBSYSTEMS=="sound" ATTRS{id}=="Generic" ATTRS{number}=="1" KERNEL=="pcmC1D2c"  SYMLINK+="snd/pcmC0D2c"
+#SUBSYSTEMS=="sound" ATTRS{id}=="Generic" ATTRS{number}=="1" KERNEL=="pcmC1D0p"  SYMLINK+="snd/pcmC0D0p"

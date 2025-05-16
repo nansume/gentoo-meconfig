@@ -1,0 +1,11 @@
+#!/usr/bin/env bash5
+# Copyright (C) 2019 Artem Slepnev, Shellgen
+# License GPLv3+: GNU GPL version 3 or later
+# gnu.org/licenses/gpl.html
+
+
+#if [[ ${EBUILD_PHASE} == compile ]]; then
+#   export LD_PRELOAD=/usr/local/lib/ld-2.28.so
+#elif [[ ${LD_PRELOAD-} ]]; then
+#   unset LD_PRELOAD
+#fi

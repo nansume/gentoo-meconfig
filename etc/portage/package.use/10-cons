@@ -1,0 +1,10 @@
+app-misc/mc -X
+dev-libs/DirectFB -video_cards_intel -video_cards_radeon
+dev-libs/DirectFB -X -egl -opengl -vdpau
+www-client/* -X -mouse
+
+dev-libs/DirectFB fbcon
+media-gfx/fbi fbcon
+media-libs/libsdl* directfb
+media-video/mplayer directfb
+www-client/links directfb

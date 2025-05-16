@@ -1,0 +1,1 @@
+#SUBSYSTEM=="input" KERNEL=="mice" GROUP="input" MODE="660"

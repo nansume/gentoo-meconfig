@@ -1,0 +1,18 @@
+*/* -icu -sound -libproxy
+
+media-libs/libsdl* -directfb
+media-video/mplayer -directfb
+www-client/links -directfb
+dev-libs/DirectFB -sdl
+media-libs/harfbuzz -icu
+app-text/poppler -cairo
+www-client/seamonkey -system-icu
+media-video/mpv -uchardet
+media-gfx/gthumb -cdr
+
+sys-auth/pambase -consolekit
+sys-libs/pam -filecaps
+
+media-libs/libsdl* fbcon
+media-video/mplayer fbcon
+www-client/links fbcon gpm

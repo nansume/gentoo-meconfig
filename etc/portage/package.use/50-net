@@ -1,0 +1,7 @@
+net-proxy/squid -htcp -wccp -wccpv2
+www-client/seamonkey -calendar -chatzilla -gmp-autoupdate -roaming
+
+
+dev-libs/xmlsec nss
+net-misc/aria2 bittorrent
+#www-client/seamonkey system-cairo system-harfbuzz system-icu system-jpeg
